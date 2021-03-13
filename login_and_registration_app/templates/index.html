@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+    
+    {% if messages %}
+    <ul class="messages list-group">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }} list-group-item-danger"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div id="title">
+        <h1 class="display-4">Registration</h1>
+
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <label for="first_name" class="col-sm-2 col-form-label">First Name:</label>
+                <div class="col-sm-7">
+                <input type="text" id="first_name" class="form-control" name="first_name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="last_name" class="col-sm-2 col-form-label">Last Name:</label>
+                <div class="col-sm-7">
+                <input type="text" id="last_name" class="form-control" name="last_name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-7">
+                <input type="email" id="email" class="form-control" name="email">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="birthday" class="col-sm-2 col-form-label">Birthday:</label>
+                <div class="col-sm-7">
+                <input type="date" id="birthday" class="form-control" name="birthday">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Password:</label>
+                <div class="col-sm-7">
+                <input type="password" id="password" class="form-control" name="password">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="confirm_password" class="col-sm-2 col-form-label">Confirm PW:</label>
+                <div class="col-sm-7">
+                <input type="password" id="confirm_password" class="form-control" name="confirm_password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Register</button>
+
+        </form>
+    </div>
+
+    <div id="title">
+        <h1 class="display-4">Login</h1>
+
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-7">
+                <input type="email" id="email" class="form-control" name="email">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Password:</label>
+                <div class="col-sm-7">
+                <input type="password" id="password" class="form-control" name="password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Login</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

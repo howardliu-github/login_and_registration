@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    {% if messages %}
+    <ul class="messages list-group">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }} list-group-item-success"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1 class="display-3">Success! Welcome, {{ user.first_name }}!</h1>
+    <div class="alert alert-success" role="alert">
+        Successfully registered (or logged in)!
+    </div>
+    
+    <div>
+        <h1 class="display-6">Account Info</h1>
+        <p class="lead"><strong>Name: {{ user.first_name }} {{ user.last_name }}</strong></p>
+        <p class="lead"><strong>Email: {{ user.email }}</strong></p>
+    </div>
+
+
+    <h6"><a href="/logout">Log Out</a></h6>
+
+</body>
+</html>
